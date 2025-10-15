@@ -6,6 +6,8 @@
         </h2>
          <div class="mt-4">
     <a href="{{ route('user.tasks') }}" class="px-4 py-2 bg-green-500 text-white rounded">View My Tasks</a>
+    <a href="{{ route('user.tasks.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded">Create your Task</a>
+    <a href="{{ route('user.categories') }}" class="px-4 py-2 bg-blue-500 text-white rounded">view Category</a>
 </div>
     </x-slot>
 

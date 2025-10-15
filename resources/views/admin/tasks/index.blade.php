@@ -42,8 +42,8 @@
                         <td class="px-4 py-2">{{ $task->status }}</td>
                         <td class="px-4 py-2">{{ $task->deadline ?? 'N/A' }}</td>
                         <td class="px-4 py-2 space-x-2">
-                            <a href="{{ route('tasks.edit', $task->id) }}" class="px-2 py-1 bg-yellow-500 text-white rounded">Edit</a>
-                            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="inline-block">
+                            <a href="{{ route('admin.tasks.edit', $task->id) }}" class="px-2 py-1 bg-yellow-500 text-white rounded">Edit</a>
+                            <form action="{{ route('admin.tasks.destroy', $task->id) }}" method="POST" class="inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="px-2 py-1 bg-red-500 text-white rounded">Delete</button>

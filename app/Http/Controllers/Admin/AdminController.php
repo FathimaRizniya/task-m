@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        // Check if user is logged in and is admin
+        
         if (!Auth::check() || Auth::user()->usertype !== 'admin') {
             return redirect('/')->with('error', 'Access denied. Admins only.');
         }

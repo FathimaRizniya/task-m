@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('category_name'); // lowercase and snake_case for consistency
-            $table->text('description')->nullable(); // text type fits longer text
+            $table->string('category_name'); 
+            $table->text('description')->nullable(); 
             $table->enum('status', ['Active', 'Inactive'])->default('Active');
             $table->timestamps();
         });

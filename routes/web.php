@@ -12,7 +12,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Profile routes (for all authenticated users)
+// Profile routes 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -35,7 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('users');
 });
 
-    // Categories (admin only)
+    // Categoriesa admin routes
     Route::prefix('categories')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
         Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
@@ -45,12 +45,12 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
     });
 
-    // Tasks (admin only)
+    // Tasks admin routes
     Route::prefix('tasks')->group(function () {
         Route::get('/', [TaskController::class, 'index'])->name('admin.tasks.index');
         Route::get('/create', [TaskController::class, 'create'])->name('admin.tasks.create');
         Route::post('/', [TaskController::class, 'store'])->name('admin.tasks.store');
-        Route::get('/{id}/edit', [TaskController::class, 'edit'])->name('admintasks.edit');
+        Route::get('/{id}/edit', [TaskController::class, 'edit'])->name('admin.tasks.edit');
         Route::put('/{id}', [TaskController::class, 'update'])->name('admin.tasks.update');
         Route::delete('/{id}', [TaskController::class, 'destroy'])->name('admin.tasks.destroy');
 
@@ -67,11 +67,15 @@ Route::middleware(['auth'])->group(function () {
     // View categories (read-only)
     Route::get('/user/categories', [CategoryController::class, 'viewForUser'])->name('user.categories');
 
-    // User tasks (own tasks only)
-    Route::prefix('user/tasks')->group(function () {
-        Route::get('/', [TaskController::class, 'userTasks'])->name('user.tasks');
-        Route::get('/{id}/edit', [TaskController::class, 'editOwn'])->name('user.tasks.edit');
-        Route::put('/{id}', [TaskController::class, 'updateOwn'])->name('user.tasks.update');
-    });
+    // For user (intern)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user/tasks', [TaskController::class, 'userTasks'])->name('user.tasks');
+    Route::get('/user/tasks/create', [TaskController::class, 'createOwn'])->name('user.tasks.create');
+    Route::post('/user/tasks', [TaskController::class, 'storeOwn'])->name('user.tasks.store');
+    Route::get('/user/tasks/{id}/edit', [TaskController::class, 'editOwn'])->name('user.tasks.edit');
+    Route::put('/user/tasks/{id}', [TaskController::class, 'updateOwn'])->name('user.tasks.update');
+});
+
+
 
 });

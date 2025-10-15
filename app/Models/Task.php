@@ -11,7 +11,11 @@ class Task extends Model
 
     protected $fillable = [
         'task_name', 'description', 'category_id',
-        'assignment_date', 'deadline', 'status', 'assigned_user_id',
+        'assignment_date', 'deadline', 'status', 'assigned_user',
+    ];
+
+     protected $casts = [
+        'deadline' => 'datetime',  
     ];
 
     public function category()
@@ -21,6 +25,6 @@ class Task extends Model
 
     public function assignedUser()
     {
-        return $this->belongsTo(User::class, 'assigned_user_id');
+        return $this->belongsTo(User::class, 'assigned_user');
     }
 }
