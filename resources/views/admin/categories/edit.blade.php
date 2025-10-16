@@ -6,21 +6,21 @@
     <title>Edit Category</title>
     <style>
         body { font-family: "Poppins", sans-serif; 
-        background: #f3f4f6; margin:0; padding:0; }
+        background: #ffffff; margin:0; padding:0; }
 
         .container { max-width:600px; margin:50px auto; 
-            background:#fff; border-radius:12px; 
+            background:#03024e; border-radius:12px; 
             padding:30px; 
-            box-shadow:0 4px 20px rgba(0,0,0,0.1);}
+            box-shadow:0 4px 20px rgba(221, 11, 11, 0.1);}
 
         h2 { text-align:center; 
             margin-bottom:25px;
-             color:#1f2937;}
+             color:#ffffff;}
 
         label { display:block;
              margin-bottom:6px; 
              font-weight:500; 
-             color:#374151;}
+             color:#ffffff;}
 
         input[type="text"],
          textarea, select { 
@@ -37,7 +37,7 @@
 
 
         button { 
-            background:#16a34a; 
+            background:#004e1d; 
             color:white; 
             padding:10px 18px;
              border:none; 
@@ -56,6 +56,19 @@
               color:#065f46; 
               margin-bottom:15px; 
               border-radius:8px;}
+
+              a {
+             background:#004e1d; 
+            color:white; 
+            padding:10px 18px;
+             border:none; 
+             border-radius:8px; 
+             cursor:pointer; 
+             font-weight:500;
+             text-decoration:none;
+            }
+
+              
     </style>
 
 </head>
@@ -99,9 +112,12 @@
             <div style="text-align:right;">
                 <button type="submit">Update Category</button>
 
+               
                 <a href="{{ route('admin.dashboard') }}" class="px-4 py-2 bg-blue-500 text-white rounded">
                     Back to Dashboard
+                    
                 </a>
+               
             </div>
         </form>
     </div>

@@ -62,7 +62,7 @@ class CategoryController extends Controller
         return redirect()->route('categories.index')->with('success', 'Category deleted successfully!');
     }
 
-    // User can view categories only (read-only)
+    // User can view categories only 
     public function viewForUser()
     {
         $categories = Category::all();

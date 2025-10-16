@@ -9,10 +9,12 @@
             background: #f7fafc;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
+       
         .container {
             max-width: 900px;
             margin: 40px auto;
-            background: #fff;
+            background: #ffffff;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             padding: 32px;
@@ -28,25 +30,25 @@
             text-align: left;
         }
         th {
-            background: #f1f5f9;
-            color: #374151;
+            background: #080d11;
+            color: #ffffff;
             font-weight: 600;
         }
         tr:hover {
-            background: #f9fafb;
+            background: #89b5e0;
         }
         .btn {
             display: inline-block;
             padding: 8px 20px;
             border-radius: 8px;
-            background: #2563eb;
-            color: #fff;
+            background: #09f300;
+            color: #000000;
             text-decoration: none;
             font-weight: 500;
             transition: background 0.2s;
         }
         .btn:hover {
-            background: #1d4ed8;
+            background: #b0f1c0;
         }
         .badge-admin {
             background: #dbeafe;
@@ -56,14 +58,14 @@
             font-size: 0.9em;
         }
         .badge-user {
-            background: #f3f4f6;
-            color: #374151;
+            background: #658feb;
+            color: #121312;
             padding: 4px 12px;
             border-radius: 9999px;
             font-size: 0.9em;
         }
         .action-link {
-            color: #2563eb;
+            color: #047a14;
             text-decoration: none;
             margin-right: 16px;
         }
@@ -95,10 +97,10 @@
     <div class="container">
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-            <h2 style="font-size: 2rem; font-weight: bold; color: #1e293b;">User Management</h2>
+            <h2 style="display: flex; justify-content: center; font-size: 2rem; font-weight: bold; color: #1e293b;">User Management</h2>
             
         </div>
-        <a href="{{ route('admin.users.create') }}" class="btn">+ Add User</a>
+        <a href="{{ route('admin.users.create') }}" class="btn"> Add the User</a>
             
         <a href="{{ route('admin.dashboard') }}" class="btn">back to dashboard</a>
 

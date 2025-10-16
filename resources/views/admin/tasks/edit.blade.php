@@ -61,6 +61,10 @@
         </div>
 
         <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Update Task</button>
+    <a href="{{ route('admin.dashboard') }}" class="px-4 py-2 bg-blue-500 text-white rounded">
+                    Back to Dashboard
+                    
+                </a>
     </form>
 
 </div>
