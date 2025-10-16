@@ -19,14 +19,14 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // Standard Laravel password resets table
+       
         Schema::create('password_resets', function (Blueprint $table) {
             $table->string('email')->index();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
 
-        // Sessions table (optional if SESSION_DRIVER=database)
+      
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->foreignId('user_id')->nullable()->index();

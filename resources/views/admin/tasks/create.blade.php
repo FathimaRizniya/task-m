@@ -78,14 +78,14 @@
         <form action="{{ route('admin.tasks.store') }}" method="POST">
             @csrf
 
-            {{-- Task Name --}}
+            
             <label for="task_name">Task Name</label>
             <input type="text" name="task_name" id="task_name" value="{{ old('task_name') }}" required>
             @error('task_name')
                 <p style="color:red; font-size:14px;">{{ $message }}</p>
             @enderror
 
-            {{-- Category --}}
+           
             <label for="category_id">Category</label>
             <select name="category_id" id="category_id" required>
                 <option value="">-- Select Category --</option>
@@ -99,7 +99,7 @@
                 <p style="color:red; font-size:14px;">{{ $message }}</p>
             @enderror
 
-            {{-- Assigned User --}}
+           
             <label for="assigned_user">Assign To</label>
             <select name="assigned_user" id="assigned_user" required>
                 <option value="">-- Select User --</option>
@@ -113,21 +113,21 @@
                 <p style="color:red; font-size:14px;">{{ $message }}</p>
             @enderror
 
-            {{-- Deadline --}}
+            
             <label for="deadline">Deadline</label>
             <input type="date" name="deadline" id="deadline" value="{{ old('deadline') }}" required>
             @error('deadline')
                 <p style="color:red; font-size:14px;">{{ $message }}</p>
             @enderror
 
-            {{-- Description --}}
+            
             <label for="description">Description</label>
             <textarea name="description" id="description">{{ old('description') }}</textarea>
             @error('description')
                 <p style="color:red; font-size:14px;">{{ $message }}</p>
             @enderror
 
-            {{-- Status --}}
+           
             <label for="status">Status</label>
             <select name="status" id="status" required>
                 <option value="Pending" {{ old('status') == 'Pending' ? 'selected' : '' }}>Pending</option>
@@ -138,7 +138,7 @@
                 <p style="color:red; font-size:14px;">{{ $message }}</p>
             @enderror
 
-            {{-- Submit --}}
+           
             <div style="text-align:right;">
                 <button type="submit">Create Task</button>
             </div>

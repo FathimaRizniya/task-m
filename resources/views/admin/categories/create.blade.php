@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Create Category') }}
+            {{ __('Create a new Category') }}
         </h2>
     </x-slot>
 
@@ -26,6 +26,9 @@
                         </select>
                     </div>
                     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Create</button>
+                    <a href="{{ route('admin.dashboard') }}" class="px-4 py-2 bg-blue-500 text-white rounded">
+                    Back to Dashboard
+                </a>
                 </form>
             </div>
         </div>

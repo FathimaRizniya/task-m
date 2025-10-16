@@ -6,6 +6,7 @@
         <div class="mt-4 space-x-4">
         <a href="{{ route('categories.index') }}" class="px-4 py-2 bg-blue-500 text-white rounded">Manage Categories</a>
         <a href="{{ route('admin.tasks.index') }}" class="px-4 py-2 bg-green-500 text-white rounded">Manage Tasks</a>
+        <a href="{{ route('admin.users.index') }}" class="px-4 py-2 bg-green-500 text-white rounded">Manage Users</a>
         </div>
     </x-slot>
 

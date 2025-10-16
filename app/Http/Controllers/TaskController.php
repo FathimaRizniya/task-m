@@ -130,7 +130,7 @@ class TaskController extends Controller
         Task::create([
             'task_name' => $request->task_name,
             'category_id' => $request->category_id,
-            'assigned_user' => Auth::id(), // automatically assign to logged-in user
+            'assigned_user' => Auth::id(), // automatically assign 
             'description' => $request->description,
             'deadline' => $request->deadline,
             'status' => 'Pending',

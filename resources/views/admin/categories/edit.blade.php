@@ -85,7 +85,7 @@
                 <p style="color:red; font-size:14px;">{{ $message }}</p>
             @enderror
 
-            {{-- Status --}}
+           
             <label for="status">Status</label>
             <select name="status" id="status">
                 <option value="Active" {{ old('status', $category->status) == 'Active' ? 'selected' : '' }}>Active</option>
@@ -95,9 +95,13 @@
                 <p style="color:red; font-size:14px;">{{ $message }}</p>
             @enderror
 
-            {{-- Submit --}}
+            
             <div style="text-align:right;">
                 <button type="submit">Update Category</button>
+
+                <a href="{{ route('admin.dashboard') }}" class="px-4 py-2 bg-blue-500 text-white rounded">
+                    Back to Dashboard
+                </a>
             </div>
         </form>
     </div>

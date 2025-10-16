@@ -5,14 +5,15 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Admin\AdminUserController;
 use Illuminate\Support\Facades\Route;
 
-// Welcome page
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Profile routes 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -35,7 +36,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('users');
 });
 
-    // Categoriesa admin routes
+    // Categories for admin routes
     Route::prefix('categories')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
         Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
@@ -44,6 +45,22 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/{id}', [CategoryController::class, 'update'])->name('categories.update');
         Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
     });
+
+    
+    //   Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    Route::prefix('users')->group(function () {
+        Route::get('/', [AdminUserController::class, 'index'])->name('admin.users.index');
+        Route::get('/create', [AdminUserController::class, 'create'])->name('admin.users.create');
+        Route::post('/', [AdminUserController::class, 'store'])->name('admin.users.store');
+        Route::get('/{id}/edit', [AdminUserController::class, 'edit'])->name('admin.users.edit');
+        Route::put('/{id}', [AdminUserController::class, 'update'])->name('admin.users.update');
+        Route::delete('/{id}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
+    });
+      
+
+
+
+
 
     // Tasks admin routes
     Route::prefix('tasks')->group(function () {
@@ -56,18 +73,17 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
+    
 
-
-// ---------------------- USER ROUTES ----------------------
 Route::middleware(['auth'])->group(function () {
 
     // User dashboard
     Route::get('/user/dashboard', [UserController::class, 'index'])->name('user.dashboard');
 
-    // View categories (read-only)
+    // View categories user
     Route::get('/user/categories', [CategoryController::class, 'viewForUser'])->name('user.categories');
 
-    // For user (intern)
+    // For user tasks
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/tasks', [TaskController::class, 'userTasks'])->name('user.tasks');
     Route::get('/user/tasks/create', [TaskController::class, 'createOwn'])->name('user.tasks.create');
