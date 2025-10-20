@@ -122,8 +122,7 @@
             <label for="task_name">Task Name</label>
             <input type="text" id="task_name" name="task_name" value="{{ $task->task_name }}" readonly>
 
-            <label for="category">Category</label>
-         
+            <label for="category">Category</label>  
             
             <input type="text" id="category" value="{{ $task->category->category_name ?? 'N/A' }}" readonly>
 
