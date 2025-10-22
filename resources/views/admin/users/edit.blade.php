@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Edit User</title>
-   
-    <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit User</title>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-900 font-sans">
 
-<div class="min-h-screen flex justify-center items-center">
-    <div class="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
-        <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">Edit User</h2>
+<div class="min-h-screen flex justify-center items-center px-4">
+    <div class="w-full max-w-md bg-gray-800 shadow-2xl rounded-xl p-8">
+        <h2 class="text-3xl font-bold mb-6 text-center text-cyan-400">Edit User</h2>
 
         @if ($errors->any())
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
@@ -26,26 +26,38 @@
             @csrf @method('PUT')
 
             <div>
-                <label class="block font-medium text-gray-700">Name</label>
-                <input type="text" name="name" value="{{ old('name', $user->name) }}" class="border w-full p-2.5 rounded-lg focus:ring focus:ring-blue-200" required>
+                <label class="block font-medium text-gray-200 mb-1">Name</label>
+                <input type="text" name="name" value="{{ old('name', $user->name) }}"
+                       class="w-full p-3 rounded-lg border border-gray-700 bg-gray-900 text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                       required>
             </div>
 
             <div>
-                <label class="block font-medium text-gray-700">Email</label>
-                <input type="email" name="email" value="{{ old('email', $user->email) }}" class="border w-full p-2.5 rounded-lg focus:ring focus:ring-blue-200" required>
+                <label class="block font-medium text-gray-200 mb-1">Email</label>
+                <input type="email" name="email" value="{{ old('email', $user->email) }}"
+                       class="w-full p-3 rounded-lg border border-gray-700 bg-gray-900 text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                       required>
             </div>
 
             <div>
-                <label class="block font-medium text-gray-700">User Type</label>
-                <select name="usertype" class="border w-full p-2.5 rounded-lg focus:ring focus:ring-blue-200" required>
+                <label class="block font-medium text-gray-200 mb-1">User Type</label>
+                <select name="usertype"
+                        class="w-full p-3 rounded-lg border border-gray-700 bg-gray-900 text-gray-100 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                        required>
                     <option value="user" {{ old('usertype', $user->usertype) == 'user' ? 'selected' : '' }}>User</option>
                     <option value="admin" {{ old('usertype', $user->usertype) == 'admin' ? 'selected' : '' }}>Admin</option>
                 </select>
             </div>
 
-            <div class="flex justify-between items-center">
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-medium">Update</button>
-                <a href="{{ route('admin.users.index') }}" class="bg-gray-500 hover:bg-gray-600 text-white px-5 py-2.5 rounded-lg font-medium">Cancel</a>
+            <div class="flex justify-between items-center mt-6">
+                <button type="submit"
+                        class="bg-cyan-500 hover:bg-cyan-600 text-gray-900 px-6 py-2 rounded-lg font-semibold transition transform hover:scale-105">
+                    Update
+                </button>
+                <a href="{{ route('admin.users.index') }}"
+                   class="bg-gray-600 hover:bg-gray-700 text-gray-100 px-6 py-2 rounded-lg font-semibold transition transform hover:scale-105">
+                    Cancel
+                </a>
             </div>
         </form>
     </div>

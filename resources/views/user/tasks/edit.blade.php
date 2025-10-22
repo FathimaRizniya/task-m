@@ -5,54 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Task</title>
     <style>
+        /* === Base Styling === */
         body {
             font-family: "Poppins", sans-serif;
-            background: #f3f4f6;
+            background: linear-gradient(135deg, #f8fafc, #e0e7ff);
             margin: 0;
-            padding: 0;
+            padding: 40px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
-        .container {
-            max-width: 600px;
-            background: #fff;
-            margin: 50px auto;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        .edit-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 650px;
+            padding: 40px 35px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .edit-card:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
         }
 
         h2 {
             text-align: center;
-            color: #1f2937;
+            color: #1e293b;
+            font-size: 26px;
+            font-weight: 700;
             margin-bottom: 25px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 10px;
         }
 
-        form label {
+        /* === Form Elements === */
+        label {
             display: block;
-            margin-bottom: 6px;
-            font-weight: 500;
+            font-weight: 600;
             color: #374151;
+            margin-bottom: 8px;
+            font-size: 14px;
         }
 
-        form input[type="text"],
-        form input[type="date"],
-        form select,
-        form textarea {
+        input[type="text"],
+        input[type="date"],
+        select,
+        textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px 14px;
+            border-radius: 10px;
             border: 1px solid #d1d5db;
-            border-radius: 8px;
-            margin-bottom: 15px;
             font-size: 15px;
-            transition: 0.2s ease;
+            color: #111827;
+            background-color: #f9fafb;
+            margin-bottom: 18px;
+            transition: all 0.25s ease;
         }
 
-        form input:focus,
-        form select:focus,
-        form textarea:focus {
-            border-color: #2563eb;
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
             outline: none;
-            box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
         }
 
         textarea {
@@ -60,54 +79,82 @@
             height: 100px;
         }
 
+        .readonly {
+            background-color: #f3f4f6;
+            color: #6b7280;
+        }
+
+        /* === Buttons === */
         .button-group {
             display: flex;
             justify-content: flex-end;
             gap: 10px;
+            margin-top: 10px;
         }
 
         .btn {
-            padding: 10px 18px;
-            font-size: 15px;
-            font-weight: 500;
+            padding: 10px 20px;
             border-radius: 8px;
-            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
             border: none;
-            transition: 0.2s ease;
+            cursor: pointer;
+            transition: all 0.25s ease;
         }
 
         .btn-cancel {
-            background: #6b7280;
-            color: white;
+            background: #e5e7eb;
+            color: #374151;
         }
 
         .btn-cancel:hover {
-            background: #4b5563;
+            background: #d1d5db;
         }
 
         .btn-submit {
-            background: #2563eb;
+            background: linear-gradient(to right, #6366f1, #4f46e5);
             color: white;
+            box-shadow: 0 3px 8px rgba(99, 102, 241, 0.25);
         }
 
         .btn-submit:hover {
-            background: #1d4ed8;
+            background: linear-gradient(to right, #4f46e5, #4338ca);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
         }
 
+        /* === Alerts === */
         .alert.success {
-            background: #d1fae5;
+            background-color: #ecfdf5;
             border-left: 5px solid #10b981;
-            padding: 12px 18px;
             color: #065f46;
-            margin: 15px auto;
-            width: 90%;
+            padding: 12px 18px;
+            margin-bottom: 20px;
             border-radius: 8px;
             text-align: center;
+            font-weight: 500;
+        }
+
+        /* === Responsive === */
+        @media (max-width: 640px) {
+            .edit-card {
+                padding: 25px 20px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+
+    <div class="edit-card">
         <h2>Edit Task</h2>
 
         @if(session('success'))
@@ -118,16 +165,14 @@
             @csrf
             @method('PUT')
 
-            
             <label for="task_name">Task Name</label>
-            <input type="text" id="task_name" name="task_name" value="{{ $task->task_name }}" readonly>
+            <input type="text" id="task_name" name="task_name" class="readonly" value="{{ $task->task_name }}" readonly>
 
-            <label for="category">Category</label>  
-            
-            <input type="text" id="category" value="{{ $task->category->category_name ?? 'N/A' }}" readonly>
+            <label for="category">Category</label>
+            <input type="text" id="category" class="readonly" value="{{ $task->category->category_name ?? 'N/A' }}" readonly>
 
             <label for="deadline">Deadline</label>
-            <input type="date" id="deadline" value="{{ $task->deadline }}" readonly>
+            <input type="date" id="deadline" class="readonly" value="{{ $task->deadline }}" readonly>
 
             <label for="description">Description</label>
             <textarea id="description" name="description">{{ old('description', $task->description) }}</textarea>
@@ -135,7 +180,6 @@
                 <p style="color:red;">{{ $message }}</p>
             @enderror
 
-            
             <label for="status">Status</label>
             <select id="status" name="status" required>
                 <option value="Pending" {{ $task->status == 'Pending' ? 'selected' : '' }}>Pending</option>
@@ -146,12 +190,12 @@
                 <p style="color:red;">{{ $message }}</p>
             @enderror
 
-         
             <div class="button-group">
                 <a href="{{ route('user.tasks') }}" class="btn btn-cancel">Cancel</a>
                 <button type="submit" class="btn btn-submit">Update Task</button>
             </div>
         </form>
     </div>
+
 </body>
 </html>

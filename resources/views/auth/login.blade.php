@@ -1,47 +1,199 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login | {{ config('app.name') }}</title>
+  @vite('resources/css/app.css')
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Inter', sans-serif;
+      background: url('/backround1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 0;
+    }
+
+    .login-container {
+      position: relative;
+      z-index: 10;
+      width: 420px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .login-container:hover {
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.25);
+      transform: translateY(-5px);
+    }
+
+    h1 {
+      font-size: 2rem;
+      background: linear-gradient(90deg, #06b6d4, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: #d1d5db;
+      margin-bottom: 2rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      text-align: left;
+      margin-bottom: 0.3rem;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      margin-bottom: 1.3rem;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      outline: none;
+      border-color: #06b6d4;
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: #a1a1aa;
+      margin-bottom: 1.5rem;
+    }
+
+    .remember-me label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .login-btn {
+      width: 100%;
+      background: linear-gradient(90deg, #06b6d4, #3b82f6);
+      border: none;
+      border-radius: 10px;
+      color: #000;
+      padding: 0.9rem;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .login-btn:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+    }
+
+    .links {
+      margin-top: 1.3rem;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      
+    }
+
+    .links a {
+      color: #06b6d4;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .links span {
+        color: #ffffff;
+        }
+
+    .links a:hover {
+      color: #3b82f6;
+    }
+    
+
+    @media (max-width: 480px) {
+      .login-container {
+        width: 90%;
+        padding: 2.5rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <h1>Welcome Back</h1>
+    <p>Login to continue your Laravel project</p>
 
     <form method="POST" action="{{ route('login') }}">
-        @csrf
+      @csrf
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+      <div>
+        <label for="email">Email Address</label>
+        <input id="email" type="email" name="email" :value="old('email')" required autofocus />
+      </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+      <div>
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" required />
+      </div>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+      <div class="remember-me">
+        <label>
+          <input id="remember_me" type="checkbox" name="remember" />
+          Remember me
+        </label>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+        @if (Route::has('password.request'))
+          <a href="{{ route('password.request') }}">Forgot?</a>
+        @endif
+      </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+      <button type="submit" class="login-btn">Login</button>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
+      <div class="links">
+        <span>New user?</span>
+        <a href="{{ route('register') }}">Create account</a>
+      </div>
     </form>
-</x-guest-layout>
+  </div>
+</body>
+</html>
